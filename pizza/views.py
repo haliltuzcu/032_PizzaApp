@@ -68,14 +68,14 @@ class OrderCreateView(FixView, CreateView):
         kwargs = super().get_context_data(**kwargs)
         # Çıktıya pizza bilgisi ekle:
         pizza_id = self.request.GET.get('pizza', 0)
-        # kwargs['pizza'] = Pizza.objects.get(id=pizza_id)
+        # kwargs['pizza'] = Pizza.objects.get(id=pizza_id)
         kwargs['pizza'] = Pizza.objects.filter(id=pizza_id).first()
         return kwargs
 
     def form_valid(self, form):
-        # user_id olmadan kaydet ve objeyi oluştur:
+        # user_id olmadan kaydet ve objeyi oluştur:
         self.object = form.save(commit=False)
-        # Objeye user_id ekle: (kayıt yapmış kullanıcı)
+        # Objeye user_id ekle: (kayıt yapmış kullanıcı)
         self.object.user_id = self.request.user.id
         # Objeye pizza_id ekle: (GET ile gelen veri)
         self.object.pizza_id = self.request.GET.get('pizza')

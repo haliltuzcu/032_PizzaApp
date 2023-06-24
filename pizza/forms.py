@@ -9,6 +9,7 @@ class OrderForm(forms.ModelForm):
         model = Order
         exclude = [
             'user', # Otomatik kayıt edilecek
+            'pizza', # GET veriden gelecek
         ]
         # Mevcut field'ların özelliklerini değiştir:
         # https://docs.djangoproject.com/en/4.2/ref/forms/widgets/
